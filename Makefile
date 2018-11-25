@@ -6,7 +6,7 @@
 #    By: flbartol <flbartol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 15:47:25 by flbartol          #+#    #+#              #
-#    Updated: 2018/11/25 18:09:04 by flbartol         ###   ########.fr        #
+#    Updated: 2018/11/25 20:57:12 by flbartol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,19 +35,19 @@ SRC := $(addprefix $(SRC_DIR),$(SRC))
 all: $(NAME)
 
 $(OBJ_DIR):
-	mkdir $@
+	@mkdir $@
 
 $(NAME): $(OBJ_DIR) $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+	@ar rcs $(NAME) $(OBJ)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	cc $(FLAGS) -o $@ -c $< -I $(HEADER)
+	@cc $(FLAGS) -o $@ -c $< -I $(HEADER)
 
 clean:
-	rm -rf $(OBJ)
+	@rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
