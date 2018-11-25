@@ -6,7 +6,7 @@
 #    By: flbartol <flbartol@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/09 15:47:25 by flbartol          #+#    #+#              #
-#    Updated: 2018/11/20 20:18:18 by flbartol         ###   ########.fr        #
+#    Updated: 2018/11/25 18:09:04 by flbartol         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,16 +25,23 @@ SRC= ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c \
 		ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c \
 		ft_lstiter.c ft_lstmap.c 
-HEADER= libft.h
-OBJ = $(SRC:.c=.o)
+HEADER= includes
+SRC_DIR = srcs/
+OBJ_DIR = objects/
+
+OBJ := $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
+SRC := $(addprefix $(SRC_DIR),$(SRC))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $?
+$(OBJ_DIR):
+	mkdir $@
 
-%.o: %.c
-	cc $(FLAGS) -o $@ -c $? -I $(HEADER)
+$(NAME): $(OBJ_DIR) $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	cc $(FLAGS) -o $@ -c $< -I $(HEADER)
 
 clean:
 	rm -rf $(OBJ)
