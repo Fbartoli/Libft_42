@@ -3,16 +3,16 @@ Premier projet de l'ecole 42. Cet exercice permet de consolider les acquis de la
 
 Objectifs:
 
-- Bases du C
+- Apprendre les bases du language C
 
-- Libc
-
-- Generation d'une librairie statique
+- Creation d'une librairie
 
 Skills:
 
-- Algorithmie et intelligence artificielle
+- Algorithmie
 
 - Rigueur
 
 - Programmation imperative
+
+First project at 42 school. Rewritten from scratch (with a bunch of restrictions) standard C library functions.
