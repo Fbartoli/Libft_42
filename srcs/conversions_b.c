@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   conversions_b.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flbartol <flbartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 19:40:13 by flbartol          #+#    #+#             */
-/*   Updated: 2018/11/15 20:07:03 by flbartol         ###   ########.fr       */
+/*   Created: 2019/02/08 09:13:33 by apsaint-          #+#    #+#             */
+/*   Updated: 2019/02/15 10:44:48 by flbartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_memalloc(size_t size)
+char		*conv_b(va_list *params)
 {
-	void *mem;
+	long	nbr;
+	char	*bin;
 
-	mem = malloc(size);
-	if (!mem)
-		return (NULL);
-	ft_bzero(mem, size);
-	return (mem);
+	nbr = va_arg(*params, long);
+	if (nbr > 2147483647 || nbr < -2147483648 || nbr == 0)
+		return ("0");
+	bin = ft_itoa_binaire(nbr);
+	return (bin);
 }

@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flbartol <flbartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 19:40:13 by flbartol          #+#    #+#             */
-/*   Updated: 2018/11/15 20:07:03 by flbartol         ###   ########.fr       */
+/*   Created: 2018/11/19 14:34:52 by flbartol          #+#    #+#             */
+/*   Updated: 2018/11/19 20:27:57 by flbartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	void *mem;
+	char			*fresh;
+	unsigned int	i;
 
-	mem = malloc(size);
-	if (!mem)
+	if (!s || !f)
 		return (NULL);
-	ft_bzero(mem, size);
-	return (mem);
+	if (!(fresh = ft_strdup(s)))
+		return (NULL);
+	i = 0;
+	while (fresh[i])
+	{
+		fresh[i] = (*f)(fresh[i]);
+		i++;
+	}
+	return (fresh);
 }

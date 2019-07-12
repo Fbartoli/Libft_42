@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: flbartol <flbartol@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 19:40:13 by flbartol          #+#    #+#             */
-/*   Updated: 2018/11/15 20:07:03 by flbartol         ###   ########.fr       */
+/*   Created: 2018/11/11 13:32:04 by flbartol          #+#    #+#             */
+/*   Updated: 2018/11/15 12:05:39 by flbartol         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memalloc(size_t size)
+void	*ft_memccpy(void *dest, const void *src, int c, size_t n)
 {
-	void *mem;
+	size_t		i;
+	char		*d;
+	const char	*s;
+	int			count;
+	char		ch;
 
-	mem = malloc(size);
-	if (!mem)
+	i = 0;
+	d = dest;
+	s = src;
+	count = 0;
+	ch = c;
+	while (count != 1 && i < n)
+	{
+		d[i] = s[i];
+		if (s[i] == ch)
+			count++;
+		i++;
+	}
+	if (count == 0)
+	{
 		return (NULL);
-	ft_bzero(mem, size);
-	return (mem);
+	}
+	return (d + i);
 }
